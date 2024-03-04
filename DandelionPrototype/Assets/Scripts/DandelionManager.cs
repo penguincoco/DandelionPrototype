@@ -42,7 +42,7 @@ public class DandelionManager : MonoBehaviour
             float randomScale = Random.Range(sizeRange.x, sizeRange.y);
             newDandelion.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
             float randomSpeed = Random.Range(speedRange.x, speedRange.y);
-            //newDandelion.GetComponent<Animator>().speed = randomSpeed;
+            newDandelion.GetComponent<Animator>().speed = randomSpeed;
 
             yield return new WaitForSeconds(Random.Range(spawnTimeRange.x, spawnTimeRange.y));
         }

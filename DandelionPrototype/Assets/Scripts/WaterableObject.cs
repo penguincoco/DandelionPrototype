@@ -23,8 +23,9 @@ public class WaterableObject : MonoBehaviour
     void Update()
     {
         //debugging lollll
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
-            NextGrowthStage();
+            NextGrowthStage(); */
     }
 
     public void SetWater(float waterAmount)

@@ -57,7 +57,10 @@ public class Input_PlayerFlowerController : MonoBehaviour
                 GameManager.Instance.SetBellStatus();
             }
             else if (GameManager.Instance.GetDandelionInteractStatus() == true && GameManager.Instance.GetBellStatus() == true)
+            {
                 GameManager.Instance.MoveCharacter();
+                GameManager.Instance.DandelionAnimationWrapper();
+            }
         }
     }
 

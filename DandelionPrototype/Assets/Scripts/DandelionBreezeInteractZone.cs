@@ -12,4 +12,12 @@ public class DandelionBreezeInteractZone : MonoBehaviour
             Debug.Log("player in zone");
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") == true)
+        {
+            GameManager.Instance.SetDandelionInteractStatus(false);
+        }
+    }
 }

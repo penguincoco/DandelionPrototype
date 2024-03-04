@@ -101,6 +101,12 @@ MonoBehaviour:
   repulsionForce: 2
   repulsionRange: 3.66
   rainRate: 0.025
+  rainCapacity: 0
+  rainParticles: {fileID: 9124039209846159132}
+  targetColorValley: {r: 0, g: 0, b: 0, a: 0}
+  targetColorPeak: {r: 0, g: 0, b: 0, a: 0}
+  animationTime: 0
+  cloudRenderer: {fileID: 2744903051763801219}
 --- !u!1 &8157733156273704317
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +343,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14f49b4e13c9ea346a703aae93f21288, type: 3}
+--- !u!198 &9124039209846159132 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1463306869098265411, guid: 14f49b4e13c9ea346a703aae93f21288,
+    type: 3}
+  m_PrefabInstance: {fileID: 7697122945824459871}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9124039209846159133 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1463306869098265410, guid: 14f49b4e13c9ea346a703aae93f21288,
