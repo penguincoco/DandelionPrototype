@@ -62,8 +62,8 @@ public class Raincloud : MonoBehaviour
         float elapsedTime = 0f;
         Material cloudMat = cloudRenderer.GetComponent<Renderer>().material;
 
-        Color startValleyColor = cloudMat.GetColor("Color Valley");
-        Color startPeakColor = cloudMat.GetColor("Color Peak");
+        Color startValleyColor = cloudMat.GetColor("_Color_Valley");
+        Color startPeakColor = cloudMat.GetColor("_Color_Peak");
 
         while (elapsedTime < animationTime)
         {
@@ -75,17 +75,18 @@ public class Raincloud : MonoBehaviour
             Color lerpedPeak = Color.Lerp(startPeakColor, targetColorPeak, t);
 
             // Set the color to the GameObject
-            cloudMat.SetColor("Color Valley", lerpedValley);
-            cloudMat.SetColor("Color Peak", lerpedPeak);
+            cloudMat.SetColor("_Color_Valley", lerpedValley);
+            cloudMat.SetColor("_Color_Peak", lerpedPeak);
 
             // Increment the elapsed time
             elapsedTime += Time.deltaTime;
+            this.gameObject.transform.position += Vector3.up * Time.deltaTime;
 
             yield return null; // Wait for the next frame
         }
 
-        cloudMat.SetColor("Color Valley", targetColorValley);
-        cloudMat.SetColor("Color Peak", targetColorPeak);
+        cloudMat.SetColor("_Color_Valley", targetColorValley);
+        cloudMat.SetColor("_Color_Peak", targetColorPeak);
     }
 
     private void OnDrawGizmosSelected()
