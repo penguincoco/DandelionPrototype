@@ -6,9 +6,9 @@ using UnityEngine.Splines;
 public class Dandelion : MonoBehaviour
 {
     [SerializeField] SplineAnimate splineCurve;
-    private float minDuration;
-    private float maxDuration;
-    private float totalTime;
+    [SerializeField] private float minDuration;
+    [SerializeField] private float maxDuration;
+    [SerializeField] private float totalTime;
     private Vector2 timeRange;
 
     private int cycles;

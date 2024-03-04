@@ -6,7 +6,10 @@ using UnityEngine.Splines;
 public class DandelionManager : MonoBehaviour
 {
     [SerializeField] private int numberOfDandelions;
-    [SerializeField] private GameObject dandelionPrefab;
+    //[SerializeField] private GameObject dandelionPrefab;
+    [SerializeField] private GameObject[] dandelionPrefabs;
+    [SerializeField] private Vector2 speedRange;
+
     [SerializeField] Dandelion[] dandelions;
     [SerializeField] SplineContainer[] splineCurves;
     [SerializeField] private Vector2 durationRange;
@@ -15,11 +18,37 @@ public class DandelionManager : MonoBehaviour
     [SerializeField] private Vector2 sizeRange;
     [SerializeField] private Vector2 spawnTimeRange;
 
+    [SerializeField] private float initialWaitTime;
+
     private void Start()
+    {
+        //StartCoroutine(SpawnOverTime());
+    }
+
+    public void StartDandelionFlow()
     {
         StartCoroutine(SpawnOverTime());
     }
 
+    private IEnumerator SpawnOverTime()
+    {
+        yield return new WaitForSeconds(initialWaitTime);
+
+        for (int i = 0; i < numberOfDandelions; i++)
+        {
+            int randomDandelion = Random.Range(0, dandelionPrefabs.Length);
+            GameObject newDandelion = Instantiate(dandelionPrefabs[randomDandelion]);
+            newDandelion.GetComponent<Animator>().Rebind();
+            float randomScale = Random.Range(sizeRange.x, sizeRange.y);
+            newDandelion.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
+            float randomSpeed = Random.Range(speedRange.x, speedRange.y);
+            //newDandelion.GetComponent<Animator>().speed = randomSpeed;
+
+            yield return new WaitForSeconds(Random.Range(spawnTimeRange.x, spawnTimeRange.y));
+        }
+    }
+
+    /*
     private IEnumerator SpawnOverTime()
     {
         for (int i = 0; i < numberOfDandelions; i++)
@@ -42,5 +71,5 @@ public class DandelionManager : MonoBehaviour
 
             yield return new WaitForSeconds(Random.Range(spawnTimeRange.x, spawnTimeRange.y));
         }
-    }
+    } */
 }
