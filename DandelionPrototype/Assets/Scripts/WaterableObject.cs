@@ -10,6 +10,7 @@ public class WaterableObject : MonoBehaviour
     private bool fullyBloomed = false;
 
     public GameObject currentStageObject;
+    [SerializeField] private GameObject flowerSpawnPos;
 
     private float currentWaterLevel;
 
@@ -54,7 +55,8 @@ public class WaterableObject : MonoBehaviour
             GameObject temp = currentStageObject;
             Destroy(temp);
             //currentStageObject = Instantiate(thisFlower.growthStates[currentGrowthStage], this.transform);
-            currentStageObject = Instantiate(thisFlower.growthStates[currentGrowthStage]);
+            currentStageObject = Instantiate(thisFlower.growthStates[currentGrowthStage], flowerSpawnPos.transform);
+            //currentStageObject = Instantiate(thisFlower.growthStates[currentGrowthStage]);
             audioSrc.PlayOneShot(audioSrc.clip);
         }
 

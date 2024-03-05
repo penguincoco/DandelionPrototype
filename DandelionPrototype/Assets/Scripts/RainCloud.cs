@@ -54,6 +54,7 @@ public class Raincloud : MonoBehaviour
             rainParticles.Stop();
 
             StartCoroutine(OutOfWaterAnimation());
+            StartCoroutine(FloatAwayAnimation());
         }
     }
 
@@ -80,13 +81,26 @@ public class Raincloud : MonoBehaviour
 
             // Increment the elapsed time
             elapsedTime += Time.deltaTime;
-            this.gameObject.transform.position += Vector3.up * Time.deltaTime;
 
             yield return null; // Wait for the next frame
         }
 
         cloudMat.SetColor("_Color_Valley", targetColorValley);
         cloudMat.SetColor("_Color_Peak", targetColorPeak);
+    }
+
+    private IEnumerator FloatAwayAnimation()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < animationTime * 4)
+        {
+            elapsedTime += Time.deltaTime;
+            this.gameObject.transform.position += Vector3.up * Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(this.gameObject);
     }
 
     private void OnDrawGizmosSelected()

@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private SplineContainer spline;
     [SerializeField] BezierKnot[] controlPoints;
-    [SerializeField] private float flyTime; 
+    [SerializeField] private float flyTime;
+    [SerializeField] private bool playerCarryingFlower;
 
     private void Awake()
     {
@@ -48,6 +49,16 @@ public class GameManager : MonoBehaviour
     public bool GetBellStatus()
     {
         return hasShakenBell;
+    }
+
+    public void SetFlowerStatus(bool isCarryingFlower)
+    {
+        playerCarryingFlower = isCarryingFlower;
+    }
+
+    public bool GetFlowerStatus()
+    {
+        return playerCarryingFlower;
     }
 
     //this is for if the player is in the interact zone, not if the dandelions have been activated or not yet 

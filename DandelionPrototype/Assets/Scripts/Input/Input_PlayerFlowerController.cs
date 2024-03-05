@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class Input_PlayerFlowerController : MonoBehaviour
 {
     private static Input_PlayerFlowerController _instance;
     public static Input_PlayerFlowerController Instance { get { return _instance; } }
-
 
     [Header("Player Variables")]
     [SerializeField] private Animator playerAnimator;
@@ -37,6 +37,9 @@ public class Input_PlayerFlowerController : MonoBehaviour
         if (isFacingTarget == true && isCarryingFlower == false && flowerControlActive)
         {
             isCarryingFlower = true;
+            UIManager.Instance.IncreasePromptCounter();
+            GameManager.Instance.SetFlowerStatus(true);         //tell the game manager that the player has picked the flower 
+
             if (animationParent.activeInHierarchy == false)
             {
                 animationParent.SetActive(true);
@@ -73,15 +76,21 @@ public class Input_PlayerFlowerController : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDist, interactableLayer))
             //if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDist))
             {
-                //promptText.text = prompts[0];
+                UIManager.Instance.SetPromptText();
                 isFacingTarget = true;
             }
-            else
+            else if (GameManager.Instance.GetFlowerStatus() == false)
             {
-                //promptText.text = "";
+                UIManager.Instance.ClearPromptText();
                 isFacingTarget = false;
             }
         }
+
+        /*
+        if (isCarryingFlower == true)
+        {
+            UIManager.Instance.SetPromptText();
+        } */
     }
 
     private IEnumerator MoveFlower()
@@ -121,4 +130,9 @@ public class Input_PlayerFlowerController : MonoBehaviour
     {
         this.flowerObject = flowerObject;
     }
+    public bool CarryingFlowerStatus()
+    {
+        return isCarryingFlower;
+    }
+
 }
