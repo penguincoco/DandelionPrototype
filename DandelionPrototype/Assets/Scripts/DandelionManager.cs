@@ -17,8 +17,10 @@ public class DandelionManager : MonoBehaviour
     [SerializeField] private Vector2 cyclesRange;
     [SerializeField] private Vector2 sizeRange;
     [SerializeField] private Vector2 spawnTimeRange;
-
     [SerializeField] private float initialWaitTime;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip windGust;
+    [SerializeField] private GameObject spawnLocation;
 
     private void Start()
     {
@@ -32,12 +34,17 @@ public class DandelionManager : MonoBehaviour
 
     private IEnumerator SpawnOverTime()
     {
-        yield return new WaitForSeconds(initialWaitTime);
+        yield return new WaitForSeconds(initialWaitTime / 2f);
+
+        audioSource.PlayOneShot(windGust);
+
+        yield return new WaitForSeconds(initialWaitTime / 2f);
 
         for (int i = 0; i < numberOfDandelions; i++)
         {
             int randomDandelion = Random.Range(0, dandelionPrefabs.Length);
-            GameObject newDandelion = Instantiate(dandelionPrefabs[randomDandelion]);
+            GameObject newDandelion = Instantiate(dandelionPrefabs[randomDandelion], spawnLocation.transform);
+
             newDandelion.GetComponent<Animator>().Rebind();
             float randomScale = Random.Range(sizeRange.x, sizeRange.y);
             newDandelion.transform.localScale = new Vector3(randomScale, randomScale, randomScale);

@@ -16,6 +16,15 @@ public class Raincloud : MonoBehaviour
     [SerializeField] private Renderer cloudRenderer;
     private GameObject flowerObject;
     private bool isWateringFlower;
+    [SerializeField] private AudioSource audioSrc;
+
+    [SerializeField] private GameObject shadow;
+    private Transform shadowPos;
+
+    private void Start()
+    {
+        shadowPos = shadow.transform;
+    }
 
     private void Update()
     {
@@ -68,18 +77,17 @@ public class Raincloud : MonoBehaviour
 
         while (elapsedTime < animationTime)
         {
-            // Calculate the lerp value based on the elapsed time and duration
             float t = elapsedTime / animationTime;
 
-            // Lerp between start and end colors
             Color lerpedValley = Color.Lerp(startValleyColor, targetColorValley, t);
             Color lerpedPeak = Color.Lerp(startPeakColor, targetColorPeak, t);
 
-            // Set the color to the GameObject
             cloudMat.SetColor("_Color_Valley", lerpedValley);
             cloudMat.SetColor("_Color_Peak", lerpedPeak);
 
-            // Increment the elapsed time
+            //decrease the rain volume too
+            audioSrc.volume = Mathf.Lerp(1, 0, elapsedTime / animationTime);
+
             elapsedTime += Time.deltaTime;
 
             yield return null; // Wait for the next frame
@@ -92,14 +100,24 @@ public class Raincloud : MonoBehaviour
     private IEnumerator FloatAwayAnimation()
     {
         float elapsedTime = 0f;
+        SpriteRenderer shadowSprite = shadow.gameObject.GetComponent<SpriteRenderer>();
+        Color shadowSpriteColor = shadowSprite.color;
+            
+        shadow.transform.parent = null; //remove the shadow as a child so it doesn't float up with the cloud
 
         while (elapsedTime < animationTime * 4)
         {
-            elapsedTime += Time.deltaTime;
             this.gameObject.transform.position += Vector3.up * Time.deltaTime;
+
+            shadowSpriteColor.a = 1 - (elapsedTime / (animationTime * 4));
+
+            shadowSprite.color = shadowSpriteColor;
+
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
 
+        Destroy(shadow);
         Destroy(this.gameObject);
     }
 

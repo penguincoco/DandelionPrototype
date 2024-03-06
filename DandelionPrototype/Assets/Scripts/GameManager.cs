@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] BezierKnot[] controlPoints;
     [SerializeField] private float flyTime;
     [SerializeField] private bool playerCarryingFlower;
+    [SerializeField] private GameObject invisibleWall;
 
     private void Awake()
     {
@@ -79,6 +80,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator DandelionAnimation()
     {
+        Destroy(invisibleWall);
         yield return new WaitForSeconds(0.5f);
         dandelionInteractActive = false;        //don't let the player re-activte the dandelion interaction if they've already flown away
 
