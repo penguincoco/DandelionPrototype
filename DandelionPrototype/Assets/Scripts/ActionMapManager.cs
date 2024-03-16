@@ -19,6 +19,16 @@ public class ActionMapManager : MonoBehaviour
             _instance = this;
     }
 
+    private void Update()
+    {
+        /*
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("activating map");
+            SetActionMap(mapName);
+        } */
+    }
+
     private void OnEnable()
     {
         input.actions["SwitchActionMap"].performed += SwitchActionMap;

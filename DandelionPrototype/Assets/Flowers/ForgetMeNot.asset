@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de64247fd4ed4df4088c6d3ae060acc8, type: 3}
+  m_Name: ForgetMeNot
+  m_EditorClassIdentifier: 
+  growthStates:
+  - {fileID: 1731135959988943989, guid: 93c52fc1e1cbffa47960bba7c8dec15d, type: 3}
+  - {fileID: 847765958957746709, guid: a459a639d4aa5b644aea1c19f3e8c33d, type: 3}
+  - {fileID: 1103679607386481727, guid: b478869a01c5bc64191d96c50e58a8b9, type: 3}
+  wiltState: {fileID: 575351181052546823, guid: e9c3c54251a0d8043ae12ab79c83d152,
+    type: 3}
+  waterStates:
+  - 0.9
+  - 1.9
+  - 2.9
+  lightStates:
+  - 0.5
+  - 1
+  - 1
+  blossomSound: {fileID: 8300000, guid: 7847543ae1e43d0459696974f3fce8de, type: 3}
+  needsLight: 1
+  needsWater: 1
+  wiltTimer: 10

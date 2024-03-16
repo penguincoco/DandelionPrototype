@@ -278,6 +278,56 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Water",
+            "id": "bc636408-2c54-43da-9a69-d348a768b467",
+            "actions": [
+                {
+                    "name": "Water",
+                    "type": "PassThrough",
+                    "id": "3a90567b-2572-4003-bc58-c8b45af31cbf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "43452b9c-229d-4de6-b763-9c93619abda0",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Water",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e9fbb76-1ea6-40cf-a648-851ac8c1c887",
+                    "path": "<DualShockGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Water",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5f4ff48a-3497-46b1-acb6-c4b94f0f0571",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Water",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
