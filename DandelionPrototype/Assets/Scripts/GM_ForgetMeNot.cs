@@ -11,7 +11,8 @@ public class GM_ForgetMeNot : MonoBehaviour
 
     [SerializeField] private int numberOfFlowers;
     [SerializeField] private int flowerScalar = 1;
-    [SerializeField] private int[] scalars;
+    [SerializeField] private int[] scalars;     //checking how many flowers have been spawned to determine whether or not to increase
+                                                //the multiplier
     private int scalarCounter = 0;
     [SerializeField] private FlowerSpawner flowerSpawn;
 

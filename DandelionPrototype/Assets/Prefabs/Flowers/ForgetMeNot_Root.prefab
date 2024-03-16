@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisFlower: {fileID: 11400000, guid: a6eae9bdd0419a241b321c78461b58d6, type: 2}
+  audioSrc: {fileID: 7694390425587656764}
   currentStageObject: {fileID: 608401707349606875}
   flowerSpawnPos: {fileID: 5216231768864298404}
   needsLight: 0

@@ -6,7 +6,7 @@ public class FlowerObject : MonoBehaviour
 {
     public Flower thisFlower;
     private int currentGrowthStage = 0;
-    private AudioSource audioSrc;
+    [SerializeField] private AudioSource audioSrc;
     private bool fullyBloomed = false;      //this is for managing if the flower has reached adulthood/full bloom
 
     public GameObject currentStageObject;
@@ -28,7 +28,6 @@ public class FlowerObject : MonoBehaviour
 
     private void Start()
     {
-        audioSrc = this.gameObject.GetComponent<AudioSource>();
         needsLight = thisFlower.needsLight;
         needsWater = thisFlower.needsWater;
 
@@ -54,7 +53,7 @@ public class FlowerObject : MonoBehaviour
                 currentStageObject = Instantiate(thisFlower.wiltState, flowerSpawnPos.transform);
                 currentStageObject.transform.localScale = Vector3.one;
                 isWilted = true;
-                SetAudio(0.8f, true);
+                SetAudio(0.6f, true);
 
                 fullyBloomed = false;
 
