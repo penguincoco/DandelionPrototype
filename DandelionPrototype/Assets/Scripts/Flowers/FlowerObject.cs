@@ -23,6 +23,8 @@ public class FlowerObject : MonoBehaviour
     [SerializeField] private float wiltLightThreshold;
     private bool isWilted;
 
+    [SerializeField] private float shineRate;
+
     [SerializeField] private string actionMapName;
     private bool babySpawned = false;
 
@@ -118,7 +120,6 @@ public class FlowerObject : MonoBehaviour
         {
             if (babySpawned == false)
             {
-                Debug.Log("spawning baby");
                 GM_ForgetMeNot.Instance.SpawnNewFlower(this.transform.position);
                 babySpawned = true;
             }

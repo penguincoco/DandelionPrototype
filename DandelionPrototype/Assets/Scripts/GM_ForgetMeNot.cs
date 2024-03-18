@@ -17,6 +17,7 @@ public class GM_ForgetMeNot : MonoBehaviour
     [SerializeField] private FlowerSpawner flowerSpawn;
 
     [SerializeField] private GameObject firstFlower;
+    private GameObject lastFlower;
 
     private void Awake()
     {
@@ -31,13 +32,13 @@ public class GM_ForgetMeNot : MonoBehaviour
     {
         //start with the watering map on 
         ActionMapManager.Instance.SetActionMap(mapName);
+        lastFlower = firstFlower;
     }
 
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-            SpawnNewFlower(firstFlower.transform.position); */
+        //if (Input.GetKeyDown(KeyCode.Space))
+            //SpawnNewFlower(lastFlower.transform.position); 
     }
 
     public void UpdateFlowerCounter()
@@ -67,5 +68,10 @@ public class GM_ForgetMeNot : MonoBehaviour
             UpdateFlowerCounter();
             UpdateFlowerScalar();
         }
+    }
+
+    public void SetLatestBaby(GameObject spawnedFlower)
+    {
+        lastFlower = spawnedFlower;
     }
 }
