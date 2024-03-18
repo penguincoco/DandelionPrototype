@@ -62,6 +62,7 @@ public class Input_PlayerWaterController : MonoBehaviour
             playerAnimator.Play("Anim_Wisp_Watering_End");
             audioSrc.Stop();
         }
+
         if (waterLevel <= 0)
         {
             isCarryingWater = false;
@@ -74,7 +75,15 @@ public class Input_PlayerWaterController : MonoBehaviour
     private void Update()
     {
         if (isCarryingWater == true && raycastObject != null && raycastObject.CompareTag("Flower") == true)
-            PourWater(); 
+            PourWater();
+        else if (raycastObject == null)
+        {
+            if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Anim_Wisp_Watering_Start"))
+            {
+                audioSrc.Stop();
+                playerAnimator.Play("Anim_Wisp_Watering_End");
+            }
+        }
 
         RaycastHit hit;
         Debug.DrawRay(transform.position, transform.forward * raycastDist, Color.red);

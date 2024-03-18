@@ -7,7 +7,8 @@ public class FlowerSpawner : MonoBehaviour
     [SerializeField] private GameObject saplingPrefab;
     //[SerializeField] private Vector2 xBounds;
     //[SerializeField] private Vector2 yBounds;
-    [SerializeField] private float neighborhoodBounds;
+    [SerializeField] private float neighborhoodOuterBounds;
+    [SerializeField] private float neighborhoodInnerBounds;
     [SerializeField] private float personalSpace; //flowers shouldn't spawn too close to each other. they each have a personal bubble :)
     private int spawnAttempts;
     [SerializeField] private int maxSpawnAttempts;
@@ -18,8 +19,8 @@ public class FlowerSpawner : MonoBehaviour
         //float randomX = Random.Range(xBounds.x, xBounds.y);
         //float randomY = Random.Range(yBounds.x, yBounds.y);
 
-        //float randomX = Random.Range(neighborhood.x - neighborhoodBounds, neighborhood.x + neighborhoodBounds);
-        //float randomZ = Random.Range(neighborhood.z - neighborhoodBounds, neighborhood.z + neighborhoodBounds);
+        //float randomX = Random.Range(neighborhood.x - neighborhoodOuterBounds, neighborhood.x + neighborhoodOuterBounds);
+        //float randomZ = Random.Range(neighborhood.z - neighborhoodOuterBounds, neighborhood.z + neighborhoodOuterBounds);
         bool positionOutcome = SetRandomPosition(neighborhood, newSapling);
         //newSapling.transform.position = randomSpawnPos;
 
@@ -34,7 +35,7 @@ public class FlowerSpawner : MonoBehaviour
 
             GM_ForgetMeNot.Instance.SetLatestBaby(newSapling);
             GM_ForgetMeNot.Instance.UpdateFlowerCounter();
-            GM_ForgetMeNot.Instance.UpdateFlowerCounter();
+            GM_ForgetMeNot.Instance.UpdateFlowerScalar();
         }
     }
 
@@ -42,8 +43,8 @@ public class FlowerSpawner : MonoBehaviour
     {
         do
         {
-            float randomX = GetRandomValue(neighborhood.x - neighborhoodBounds, neighborhood.x + neighborhoodBounds, neighborhood.x);
-            float randomZ = GetRandomValue(neighborhood.z - neighborhoodBounds, neighborhood.z + neighborhoodBounds, neighborhood.z);
+            float randomX = GetRandomValue(neighborhood.x - neighborhoodOuterBounds, neighborhood.x + neighborhoodOuterBounds, neighborhood.x);
+            float randomZ = GetRandomValue(neighborhood.z - neighborhoodOuterBounds, neighborhood.z + neighborhoodOuterBounds, neighborhood.z);
             Vector3 randomSpawnPos = new Vector3(randomX, -1, randomZ);
             spawnedObject.transform.position = randomSpawnPos;
 
@@ -54,6 +55,7 @@ public class FlowerSpawner : MonoBehaviour
         {
             if (CheckForOtherObjects(spawnedObject) == true)
             {
+                Debug.Log("too close to another object, object destroyed");
                 Destroy(spawnedObject);
                 return false;
             }
@@ -68,7 +70,7 @@ public class FlowerSpawner : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            if (collider.gameObject != spawnedObject && collider.gameObject.CompareTag("Flower"))
+            if (collider.gameObject != spawnedObject && collider.gameObject.CompareTag("Flower") && collider.gameObject.CompareTag("Water Source"))
             {
                 return true;
             }
@@ -79,8 +81,8 @@ public class FlowerSpawner : MonoBehaviour
     private float GetRandomValue(float min, float max, float originValue)
     {
         float randomValue = Random.Range(min, max);
-        float bufferMin = originValue - 4f;
-        float bufferMax = originValue + 4f;
+        float bufferMin = originValue - neighborhoodInnerBounds;
+        float bufferMax = originValue + neighborhoodInnerBounds;
 
         do
         {

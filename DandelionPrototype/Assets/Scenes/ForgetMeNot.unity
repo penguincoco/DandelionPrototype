@@ -350,8 +350,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapName: Water
   numberOfFlowers: 0
-  flowerScalar: 1
-  scalars: 010000000200000003000000
+  scalars: 050000000800000010000000
+  scalarCounter: 0
   flowerSpawn: {fileID: 236597397}
   firstFlower: {fileID: 266765064}
   spawnSelfGrowingFlowers: 0
@@ -369,7 +369,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saplingPrefab: {fileID: 8911676274899789381, guid: d85651e3c6bdc8e44b0a478e0e33139e,
     type: 3}
-  neighborhoodBounds: 8.5
+  neighborhoodOuterBounds: 6.5
+  neighborhoodInnerBounds: 2
   personalSpace: 0.75
   maxSpawnAttempts: 5
 --- !u!1 &266765064 stripped
@@ -1135,7 +1136,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 61
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 2113410241}
+  m_TargetTexture: {fileID: 1996704925}
   m_TargetDisplay: 0
   m_TargetEye: 0
   m_HDR: 0
@@ -1948,6 +1949,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8687346568236709372, guid: e44252a78e6e23a4e9dbb55b14377f88,
+        type: 3}
+      propertyPath: particles
+      value: 
+      objectReference: {fileID: 1521089917}
     - target: {fileID: 9087300241491824875, guid: e44252a78e6e23a4e9dbb55b14377f88,
         type: 3}
       propertyPath: bounds.m_Center.x
@@ -2164,6 +2170,7 @@ Transform:
   m_LocalScale: {x: 0.07853812, y: 0.07853812, z: 0.07853812}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1521089916}
   - {fileID: 8481389192606933037}
   - {fileID: 1111926667029869928}
   m_Father: {fileID: 1102574181}
@@ -3204,6 +3211,86 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1142475961}
+--- !u!1001 &1521089915
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1103378679}
+    m_Modifications:
+    - target: {fileID: 2326282995801080189, guid: 0b2ce8bcf5da803418dd8b246054f78d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326282995801080189, guid: 0b2ce8bcf5da803418dd8b246054f78d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326282995801080189, guid: 0b2ce8bcf5da803418dd8b246054f78d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326282995801080189, guid: 0b2ce8bcf5da803418dd8b246054f78d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.21129203
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326282995801080189, guid: 0b2ce8bcf5da803418dd8b246054f78d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.977423
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326282995801080189, guid: 0b2ce8bcf5da803418dd8b246054f78d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326282995801080189, guid: 0b2ce8bcf5da803418dd8b246054f78d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326282995801080189, guid: 0b2ce8bcf5da803418dd8b246054f78d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 204.396
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326282995801080189, guid: 0b2ce8bcf5da803418dd8b246054f78d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326282995801080189, guid: 0b2ce8bcf5da803418dd8b246054f78d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398630739118628009, guid: 0b2ce8bcf5da803418dd8b246054f78d,
+        type: 3}
+      propertyPath: m_Name
+      value: WaterPouringParticles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0b2ce8bcf5da803418dd8b246054f78d, type: 3}
+--- !u!4 &1521089916 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2326282995801080189, guid: 0b2ce8bcf5da803418dd8b246054f78d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1521089915}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1521089917 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5340448077825079650, guid: 0b2ce8bcf5da803418dd8b246054f78d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1521089915}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1774046051
 Mesh:
   m_ObjectHideFlags: 0
@@ -3369,7 +3456,7 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!84 &2113410241
+--- !u!84 &1996704925
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

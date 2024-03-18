@@ -10,10 +10,10 @@ public class GM_ForgetMeNot : MonoBehaviour
     [SerializeField] private string mapName;
 
     [SerializeField] private int numberOfFlowers;
-    [SerializeField] private int flowerScalar = 1;
+    private int flowerScalar = 1;
     [SerializeField] private int[] scalars;     //checking how many flowers have been spawned to determine whether or not to increase
                                                 //the multiplier
-    private int scalarCounter = 0;
+    [SerializeField] private int scalarCounter = 0;
     [SerializeField] private FlowerSpawner flowerSpawn;
 
     [SerializeField] private GameObject firstFlower;
@@ -38,8 +38,9 @@ public class GM_ForgetMeNot : MonoBehaviour
 
     void Update()
     {
+        /* 
         if (Input.GetKeyDown(KeyCode.Space))
-            SpawnNewFlowers(lastFlower.transform.position); 
+            SpawnNewFlowers(lastFlower.transform.position); */
     }
 
     public void UpdateFlowerCounter()
@@ -49,10 +50,16 @@ public class GM_ForgetMeNot : MonoBehaviour
 
     public void UpdateFlowerScalar()
     {
+        
+
         if (scalarCounter < scalars.Length && numberOfFlowers >= scalars[scalarCounter]) 
         {
-            flowerScalar = (int)Mathf.Pow((float)flowerScalar, 2f);
+            flowerScalar = (int)(Mathf.Pow(flowerScalar, 2));
             scalarCounter += 1;
+        }
+        else if (numberOfFlowers >= 3)
+        {
+            flowerScalar = 2;
         }
 
         if (scalarCounter >= 2)
@@ -76,7 +83,7 @@ public class GM_ForgetMeNot : MonoBehaviour
                 float randomValue = Random.value;
                 
                 //heavily bias it towards self growing flowers 
-                if (randomValue <= 0.75f)
+                if (randomValue <= 0.85f)
                     isSelfGrowing = true;
                 else
                     isSelfGrowing = false;

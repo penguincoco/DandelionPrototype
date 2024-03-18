@@ -69,7 +69,6 @@ public class FlowerObject : MonoBehaviour
 
         if (isSelfGrowing)
         {
-            Debug.Log("this flower is self growing, so it's progressing on its own");
             SetWater(selfWaterRate);
             SetSunlight(selfLightRate);
         }
@@ -82,7 +81,6 @@ public class FlowerObject : MonoBehaviour
 
     public void SetAudio(float pitch, bool isLooping, float volume)
     {
-        Debug.Log("setting audio");
         audioSrc.pitch = pitch;
         audioSrc.loop = isLooping;
         audioSrc.volume = volume;
