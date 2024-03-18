@@ -12,11 +12,7 @@ public class FlowerSpawner : MonoBehaviour
     private int spawnAttempts;
     [SerializeField] private int maxSpawnAttempts;
 
-    private void Update()
-    {
-    }
-
-    public void SpawnSapling(Vector3 neighborhood)
+    public void SpawnSapling(Vector3 neighborhood, bool isSelfGrowing)
     {
         GameObject newSapling = Instantiate(saplingPrefab);
         //float randomX = Random.Range(xBounds.x, xBounds.y);
@@ -27,13 +23,17 @@ public class FlowerSpawner : MonoBehaviour
         bool positionOutcome = SetRandomPosition(neighborhood, newSapling);
         //newSapling.transform.position = randomSpawnPos;
 
+        //if it had to destroy a baby because of position overlap, return
         if (positionOutcome == false)
             return;
         else
         {
+            newSapling.GetComponent<FlowerObject>().SetSelfGrowing(isSelfGrowing);
             //play the sound for spawning 
-            newSapling.GetComponent<FlowerObject>().SetAudio(1.1f, false);
+            newSapling.GetComponent<FlowerObject>().SetAudio(1.1f, true, 1f);
+
             GM_ForgetMeNot.Instance.SetLatestBaby(newSapling);
+            GM_ForgetMeNot.Instance.UpdateFlowerCounter();
             GM_ForgetMeNot.Instance.UpdateFlowerCounter();
         }
     }
@@ -57,11 +57,9 @@ public class FlowerSpawner : MonoBehaviour
                 Destroy(spawnedObject);
                 return false;
             }
-            else
-                return true;
         }
 
-        return false;
+        return true;
     }
 
     private bool CheckForOtherObjects(GameObject spawnedObject)

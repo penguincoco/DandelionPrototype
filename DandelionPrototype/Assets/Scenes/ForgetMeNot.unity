@@ -351,9 +351,10 @@ MonoBehaviour:
   mapName: Water
   numberOfFlowers: 0
   flowerScalar: 1
-  scalars: 020000000400000008000000
+  scalars: 010000000200000003000000
   flowerSpawn: {fileID: 236597397}
   firstFlower: {fileID: 266765064}
+  spawnSelfGrowingFlowers: 0
 --- !u!114 &236597397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +459,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b1db02d627c208441bc1b999dd37adc3, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.1
   m_Pitch: 1
@@ -1134,7 +1135,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 61
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 2114803211}
+  m_TargetTexture: {fileID: 2113410241}
   m_TargetDisplay: 0
   m_TargetEye: 0
   m_HDR: 0
@@ -1262,6 +1263,12 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!82 &805154175 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3836312031660545375, guid: e44252a78e6e23a4e9dbb55b14377f88,
+    type: 3}
+  m_PrefabInstance: {fileID: 1102574178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &825577863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,6 +1743,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 102.373375
       objectReference: {fileID: 0}
+    - target: {fileID: 3836312031660545375, guid: e44252a78e6e23a4e9dbb55b14377f88,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4608718296634068547, guid: e44252a78e6e23a4e9dbb55b14377f88,
         type: 3}
       propertyPath: m_Mesh
@@ -1994,6 +2006,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1102574189}
+    - targetCorrespondingSourceObject: {fileID: 8377998239739920443, guid: e44252a78e6e23a4e9dbb55b14377f88,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1102574192}
   m_SourcePrefab: {fileID: 100100000, guid: e44252a78e6e23a4e9dbb55b14377f88, type: 3}
 --- !u!1 &1102574179 stripped
 GameObject:
@@ -2107,7 +2123,18 @@ MonoBehaviour:
   isFacingTarget: 0
   raycastObject: {fileID: 0}
   waterObject: {fileID: 7943076907657157602}
-  pourRate: 1
+  pourRate: 0.0025
+  playerAnimator: {fileID: 1102574182}
+  audioSrc: {fileID: 805154175}
+  sfx_pour: {fileID: 8300000, guid: f239d9dd02d71c64e99cfa7d57b2e66a, type: 3}
+--- !u!81 &1102574192
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102574179}
+  m_Enabled: 1
 --- !u!1 &1103378678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,7 +2979,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1442999008}
   - component: {fileID: 1442999012}
-  - component: {fileID: 1442999011}
   - component: {fileID: 1442999010}
   - component: {fileID: 1442999009}
   m_Layer: 0
@@ -3055,14 +3081,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!81 &1442999011
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442999007}
-  m_Enabled: 1
 --- !u!20 &1442999012
 Camera:
   m_ObjectHideFlags: 0
@@ -3351,7 +3369,7 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!84 &2114803211
+--- !u!84 &2113410241
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3752,12 +3770,27 @@ PrefabInstance:
     - target: {fileID: 7694390425587656764, guid: d85651e3c6bdc8e44b0a478e0e33139e,
         type: 3}
       propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694390425587656764, guid: d85651e3c6bdc8e44b0a478e0e33139e,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694390425587656764, guid: d85651e3c6bdc8e44b0a478e0e33139e,
+        type: 3}
+      propertyPath: MinDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694390425587656764, guid: d85651e3c6bdc8e44b0a478e0e33139e,
+        type: 3}
+      propertyPath: DopplerLevel
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7694390425587656764, guid: d85651e3c6bdc8e44b0a478e0e33139e,
         type: 3}
       propertyPath: m_PlayOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8911676274899789381, guid: d85651e3c6bdc8e44b0a478e0e33139e,
         type: 3}

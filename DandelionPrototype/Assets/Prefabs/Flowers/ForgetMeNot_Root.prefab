@@ -344,6 +344,9 @@ MonoBehaviour:
   wiltLightThreshold: 0.6
   shineRate: 0
   actionMapName: 
+  isSelfGrowing: 0
+  selfWaterRate: 0.001
+  selfLightRate: 0.001
 --- !u!82 &7694390425587656764
 AudioSource:
   m_ObjectHideFlags: 0
@@ -355,10 +358,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7847543ae1e43d0459696974f3fce8de, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
+  m_Pitch: 1.1
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -400,7 +403,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

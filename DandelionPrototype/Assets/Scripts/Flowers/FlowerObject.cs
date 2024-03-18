@@ -28,6 +28,10 @@ public class FlowerObject : MonoBehaviour
     [SerializeField] private string actionMapName;
     private bool babySpawned = false;
 
+    [SerializeField] private bool isSelfGrowing;
+    [SerializeField] private float selfWaterRate;
+    [SerializeField] private float selfLightRate;
+
     private void Start()
     {
         needsLight = thisFlower.needsLight;
@@ -55,19 +59,33 @@ public class FlowerObject : MonoBehaviour
                 currentStageObject = Instantiate(thisFlower.wiltState, flowerSpawnPos.transform);
                 currentStageObject.transform.localScale = Vector3.one;
                 isWilted = true;
-                SetAudio(0.6f, true);
+                SetAudio(0.6f, true, 0.8f);
 
                 fullyBloomed = false;
 
                 wiltTimer = thisFlower.wiltTimer;
             }
         }
+
+        if (isSelfGrowing)
+        {
+            Debug.Log("this flower is self growing, so it's progressing on its own");
+            SetWater(selfWaterRate);
+            SetSunlight(selfLightRate);
+        }
     }
 
-    public void SetAudio(float pitch, bool isLooping)
+    public void SetSelfGrowing(bool growsOnItsOwn)
     {
+        this.isSelfGrowing = growsOnItsOwn;
+    }
+
+    public void SetAudio(float pitch, bool isLooping, float volume)
+    {
+        Debug.Log("setting audio");
         audioSrc.pitch = pitch;
         audioSrc.loop = isLooping;
+        audioSrc.volume = volume;
 
         if (isLooping == false)
             audioSrc.PlayOneShot(audioSrc.clip);
@@ -107,7 +125,7 @@ public class FlowerObject : MonoBehaviour
 
             currentStageObject = Instantiate(thisFlower.growthStates[currentGrowthStage], flowerSpawnPos.transform);
             currentStageObject.transform.localScale = Vector3.one;
-            SetAudio(1f, false);
+            SetAudio(1f, false, 0.8f);
         }
     }
 
@@ -120,7 +138,7 @@ public class FlowerObject : MonoBehaviour
         {
             if (babySpawned == false)
             {
-                GM_ForgetMeNot.Instance.SpawnNewFlower(this.transform.position);
+                GM_ForgetMeNot.Instance.SpawnNewFlowers(this.transform.position);
                 babySpawned = true;
             }
             currentWaterLevel = 0;
@@ -199,7 +217,7 @@ public class FlowerObject : MonoBehaviour
             currentStageObject.transform.localScale = Vector3.one;
             //currentStageObject = Instantiate(thisFlower.growthStates[currentGrowthStage]);
             //audioSrc.PlayOneShot(audioSrc.clip);
-            SetAudio(1f, false);
+            SetAudio(1f, false, 0.8f);
         }
 
         if (currentGrowthStage == thisFlower.growthStates.Length - 1)

@@ -17,6 +17,7 @@ public class GM_ForgetMeNot : MonoBehaviour
     [SerializeField] private FlowerSpawner flowerSpawn;
 
     [SerializeField] private GameObject firstFlower;
+    [SerializeField] private bool spawnSelfGrowingFlowers;
     private GameObject lastFlower;
 
     private void Awake()
@@ -37,8 +38,8 @@ public class GM_ForgetMeNot : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-            //SpawnNewFlower(lastFlower.transform.position); 
+        if (Input.GetKeyDown(KeyCode.Space))
+            SpawnNewFlowers(lastFlower.transform.position); 
     }
 
     public void UpdateFlowerCounter()
@@ -53,20 +54,35 @@ public class GM_ForgetMeNot : MonoBehaviour
             flowerScalar = (int)Mathf.Pow((float)flowerScalar, 2f);
             scalarCounter += 1;
         }
-    }
 
-    public void SpawnNewFlower(Vector3 spawnNeighborhood)
-    {
-        SpawnFlower(flowerScalar, spawnNeighborhood);
-    }
-
-    private void SpawnFlower(int numberOfFlowers, Vector3 spawnNeighborhood)
-    {
-        for (int i = 0; i < numberOfFlowers; i++) 
+        if (scalarCounter >= 2)
         {
-            flowerSpawn.SpawnSapling(spawnNeighborhood);
-            UpdateFlowerCounter();
-            UpdateFlowerScalar();
+            spawnSelfGrowingFlowers = true;
+        }
+    }
+
+    public void SpawnNewFlowers(Vector3 spawnNeighborhood)
+    {
+        SpawnFlowers(flowerScalar, spawnNeighborhood);
+    }
+
+    private void SpawnFlowers(int numberToSpawn, Vector3 spawnNeighborhood)
+    {
+        for (int i = 0; i < numberToSpawn; i++)
+        {
+            bool isSelfGrowing = false;
+            if (spawnSelfGrowingFlowers == true)
+            {
+                float randomValue = Random.value;
+                
+                //heavily bias it towards self growing flowers 
+                if (randomValue <= 0.75f)
+                    isSelfGrowing = true;
+                else
+                    isSelfGrowing = false;
+            }
+
+            flowerSpawn.SpawnSapling(spawnNeighborhood, isSelfGrowing);
         }
     }
 
