@@ -861,7 +861,8 @@ AudioSource:
   m_GameObject: {fileID: 4115317883407769558}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 0cad8af4d4155754e963632fb650a13c,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -2050,6 +2051,7 @@ GameObject:
   - component: {fileID: 238589414411547012}
   - component: {fileID: 2091013275674728709}
   - component: {fileID: 2528842375943152200}
+  - component: {fileID: 3789209140095891002}
   m_Layer: 0
   m_Name: CHARACTER ROOT
   m_TagString: Untagged
@@ -2148,6 +2150,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &3789209140095891002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8377998239739920443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f477bb37c849c54d885943c6d15669e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsPanel: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 0cad8af4d4155754e963632fb650a13c, type: 2}
+  volumeIncrement: 5
+  volumeSlider: {fileID: 0}
 --- !u!1 &8565694961795513580
 GameObject:
   m_ObjectHideFlags: 0

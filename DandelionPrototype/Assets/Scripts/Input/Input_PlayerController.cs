@@ -42,18 +42,17 @@ public class Input_PlayerController : MonoBehaviour
         _input = new Vector3(movementX, 0.0f, movementY);
     }
 
-    /*
-    private void OnRestart(InputValue inputValue)
-    {
-        SceneManager.LoadScene(0);
-    } */
-
     private void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
 
         movementX = movementVector.x;
         movementY = movementVector.y;
+    }
+
+    private void OnRestart()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void Update()

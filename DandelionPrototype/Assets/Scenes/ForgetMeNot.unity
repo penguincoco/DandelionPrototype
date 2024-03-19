@@ -674,6 +674,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: CANVAS
       objectReference: {fileID: 0}
+    - target: {fileID: 4881390349585487213, guid: 1169cf2cbfab3a2458251bf243fa706c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5555556
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881390349585487213, guid: 1169cf2cbfab3a2458251bf243fa706c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881390349585487213, guid: 1169cf2cbfab3a2458251bf243fa706c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5555556
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980016162385738445, guid: 1169cf2cbfab3a2458251bf243fa706c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5555556
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980016162385738445, guid: 1169cf2cbfab3a2458251bf243fa706c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7397062373283391412, guid: 1169cf2cbfab3a2458251bf243fa706c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1136,7 +1166,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 61
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 1996704925}
+  m_TargetTexture: {fileID: 1954652581}
   m_TargetDisplay: 0
   m_TargetEye: 0
   m_HDR: 0
@@ -1744,6 +1774,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 102.373375
       objectReference: {fileID: 0}
+    - target: {fileID: 3789209140095891002, guid: e44252a78e6e23a4e9dbb55b14377f88,
+        type: 3}
+      propertyPath: volumeSlider
+      value: 
+      objectReference: {fileID: 1861315488}
+    - target: {fileID: 3789209140095891002, guid: e44252a78e6e23a4e9dbb55b14377f88,
+        type: 3}
+      propertyPath: settingsPanel
+      value: 
+      objectReference: {fileID: 1777869629}
     - target: {fileID: 3836312031660545375, guid: e44252a78e6e23a4e9dbb55b14377f88,
         type: 3}
       propertyPath: m_Volume
@@ -3456,7 +3496,25 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!84 &1996704925
+--- !u!1 &1777869629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7397062373283391412, guid: 1169cf2cbfab3a2458251bf243fa706c,
+    type: 3}
+  m_PrefabInstance: {fileID: 488502329}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1861315488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2142409541470920162, guid: 1169cf2cbfab3a2458251bf243fa706c,
+    type: 3}
+  m_PrefabInstance: {fileID: 488502329}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!84 &1954652581
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
